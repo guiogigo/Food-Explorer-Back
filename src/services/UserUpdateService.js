@@ -38,7 +38,6 @@ class UserUpdateService {
             newData.password = await hash(new_password, 8);
         }
 
-
         const updated = await this.userRepository.update(id, newData);
         if(!updated) throw new AppError("Ocorreu uma falha ao atualizar.", 500);
 
