@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(routes)
 
 app.get("/", (req, res) => {
-    return res.send("Hello World");
+    return res.send("Sla");
 })
 
 app.use((error, request, response, next) => {

@@ -17,12 +17,12 @@ class UsersController {
 
     async update(req, res) {
         const {name, email, old_password, new_password} = req.body;
-        const {id} = req.params;
+        const user_id = req.user.id;
 
         const userRepository = new UserRepository();
         const userUpdateService = new UserUpdateService(userRepository);
 
-        const updated = await userUpdateService.execute({id, name, email, old_password, new_password});
+        const updated = await userUpdateService.execute({id: user_id, name, email, old_password, new_password});
 
         res.send({updated}).status(200);
     }
