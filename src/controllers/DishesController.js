@@ -3,6 +3,7 @@ const IngredientRepository = require("../repositories/IngredientRepository");
 const DishCreateService = require("../services/DishCreateService");
 const DishDeleteService = require("../services/DishDeleteService");
 const DishUpdateService = require("../services/DishUpdateService");
+const DishShowService = require("../services/DishShowService");
 
 
 class DishesController {
@@ -62,6 +63,18 @@ class DishesController {
         })
 
         return res.status(200).json();
+    }
+
+    async show(req, res) {
+
+        const dishRepository = new DishRepository();
+        const ingredientRepository = new IngredientRepository();
+        const dishShowService = new DishShowService(dishRepository, ingredientRepository);
+
+        const {id} = req.params;
+
+        const dish = await dishShowService.execute({id});
+        return res.status(200).json({dish});
     }
 }
 
