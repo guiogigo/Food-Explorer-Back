@@ -84,11 +84,10 @@ class DishesController {
         const dishIndexService = new DishIndexService(dishRepository, ingredientRepository);
 
         const { search } = req.query;
-        const user_id = req.user.id;
 
         const querys = (typeof search === 'string' && search === 'undefined') ? null : search;
 
-        const dishes = await dishIndexService.execute({user_id, querys});   
+        const dishes = await dishIndexService.execute(querys);   
 
         return res.status(200).json({dishes});
     }

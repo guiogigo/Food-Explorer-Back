@@ -6,7 +6,7 @@ class DishShowService {
         this.ingredientRepository = ingredientRepository;
     }
 
-    async execute({user_id, querys}) {
+    async execute(querys) {
 
         const query = querys.split(",");
         
