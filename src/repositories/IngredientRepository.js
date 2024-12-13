@@ -25,6 +25,15 @@ class IngredientRepository {
         const deleted = await knex("ingredients").where({id}).delete();
         return deleted;
     }
+
+    async ingredientsBySearch(query) {
+        const ingredients = await knex("ingredients")
+        .select('dish_id')
+        .whereIn('name', query)
+        .orWhereLike('name', `%${query[0]}%`)
+        .groupBy('dish_id');
+        return ingredients;
+    }
 }
 
 module.exports = IngredientRepository;

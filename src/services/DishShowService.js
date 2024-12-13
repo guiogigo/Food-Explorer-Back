@@ -10,18 +10,12 @@ class DishShowService {
 
         if(isNaN(id)) throw new AppError("Código de prato inválido", 400);
 
-        const dish = await this.dishRepository.findById(id);
-        if(!dish) throw new AppError("Prato não encontrado");
-
-        delete dish.user_id;
-        delete dish.created_at;
-        delete dish.updated_at;
-
-        dish.ingredients = [];
-        const ingredientsList = await this.ingredientRepository.findByDish(id);
-        ingredientsList.map((item, i) => {
-            dish.ingredients[i] = item.name;
-        });
+        const dishString = await this.dishRepository.findById(id);
+        if(!dishString) throw new AppError("Prato não encontrado");
+        const dish = dishString.map((dish) => ({
+            ...dish,
+            ingredients: dish.ingredients ? dish.ingredients.split(",") : []
+        }))
 
         return dish;
     }

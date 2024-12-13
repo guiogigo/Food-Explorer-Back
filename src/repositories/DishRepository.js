@@ -29,8 +29,61 @@ class DishRepository {
         return dish;
     }
 
+    async findByUser(user_id, query) {
+        const dishes = await knex("dishes").select({
+            id: 'id',
+            name: 'name',
+            description: 'description',
+            avatar: 'avatar',
+            price: 'price',
+            category_id: 'category_id'
+        })
+        .where({user_id})
+        .whereLike("name", `%${query}%`)
+        .orderBy('name')
+
+        return dishes;
+    }
+
+    async dishesBySearch(query){
+        const dishes = await knex("dishes as d")
+        .join("categories as c", "c.id", "d.category_id")
+        .join("ingredients as i", "i.dish_id", "d.id")
+        .select(
+            'd.id',
+            'd.name',
+            'd.description',
+            'd.price',
+            'd.avatar',
+            'c.id as categoryId',
+            'c.name as category',
+            knex.raw('GROUP_CONCAT(i.name) as ingredients')
+        )
+        .whereLike('d.name', `%${query}%`)
+        .orWhereIn('d.name', query)
+        .groupBy('d.id')
+        .orderBy('category');
+        return dishes;
+    }
+
     async findById(id) {
-        const [dish] = await knex("dishes").where({id});
+        const idArray = Array.isArray(id) ? id : [id]
+        const dish = await knex("dishes as d")
+        .join("categories as c", "c.id", "d.category_id")
+        .join("ingredients as i", "i.dish_id", "d.id")
+        .select(
+            'd.id',
+            'd.name',
+            'd.description',
+            'd.price',
+            'd.avatar',
+            'c.id as categoryId',
+            'c.name as category',
+            knex.raw('GROUP_CONCAT(i.name) as ingredients')
+        )
+        .whereIn("d.id", idArray)
+        .groupBy('d.id')
+        .orderBy('category');
         return dish;
     }
 }

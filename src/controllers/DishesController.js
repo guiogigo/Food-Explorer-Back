@@ -4,6 +4,7 @@ const DishCreateService = require("../services/DishCreateService");
 const DishDeleteService = require("../services/DishDeleteService");
 const DishUpdateService = require("../services/DishUpdateService");
 const DishShowService = require("../services/DishShowService");
+const DishIndexService = require("../services/DishIndexService");
 
 
 class DishesController {
@@ -75,6 +76,21 @@ class DishesController {
 
         const dish = await dishShowService.execute({id});
         return res.status(200).json({dish});
+    }
+
+    async index(req, res) {
+        const dishRepository = new DishRepository();
+        const ingredientRepository = new IngredientRepository();
+        const dishIndexService = new DishIndexService(dishRepository, ingredientRepository);
+
+        const { search } = req.query;
+        const user_id = req.user.id;
+
+        const querys = (typeof search === 'string' && search === 'undefined') ? null : search;
+
+        const dishes = await dishIndexService.execute({user_id, querys});   
+
+        return res.status(200).json({dishes});
     }
 }
 

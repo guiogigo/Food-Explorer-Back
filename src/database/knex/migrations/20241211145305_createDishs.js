@@ -9,7 +9,7 @@ exports.up = knex => knex.schema.createTable("dishes", table => {
     table.double("price", 2);
 
 
-    table.integer("category_id").references("id").inTable("categorys").onDelete("CASCADE")
+    table.integer("category_id").references("id").inTable("categories").onDelete("CASCADE")
 
     table.timestamp('created_at').defaultTo(knex.fn.now());
     table.timestamp('updated_at').defaultTo(knex.fn.now());
