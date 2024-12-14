@@ -12,10 +12,11 @@ class DishShowService {
 
         const dishString = await this.dishRepository.findById(id);
         if(!dishString) throw new AppError("Prato não encontrado");
-        const dish = dishString.map((dish) => ({
+        const [dish] = dishString.map((dish) => ({
             ...dish,
             ingredients: dish.ingredients ? dish.ingredients.split(",") : []
         }))
+        delete dish.user_id;
 
         return dish;
     }

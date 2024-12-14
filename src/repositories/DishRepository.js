@@ -73,6 +73,7 @@ class DishRepository {
         .join("ingredients as i", "i.dish_id", "d.id")
         .select(
             'd.id',
+            'd.user_id',
             'd.name',
             'd.description',
             'd.price',

@@ -1,20 +1,19 @@
 require('express-async-errors');
-const express = require("express");
 require('dotenv').config();
 
-
-const AppError = require("./utils/AppError");
+const express = require("express");
 const routes = require("./routes")
+const AppError = require("./utils/AppError");
+
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 app.use(express.json());
 
-app.use(routes)
+const uploadConfig = require('./config/upload');
+//app.use("/files", express.static(uploadConfig.UPLOADS_FOLDER))
 
-app.get("/", (req, res) => {
-    return res.send("Sla");
-})
-
+app.use(routes);
 app.use((error, request, response, next) => {
     if(error instanceof AppError) {
         return response.status(error.statusCode).json({
@@ -31,7 +30,6 @@ app.use((error, request, response, next) => {
     })
 })
 
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on Port ${PORT};`)
 })

@@ -1,5 +1,7 @@
 const { compare } = require('bcryptjs');
 const AppError = require('../utils/AppError');
+const authConfig = require("../config/auth");
+const { sign } = require("jsonwebtoken");
 
 class UserCreateService {
     constructor(userRepository) {
@@ -14,15 +16,23 @@ class UserCreateService {
 
         const user = await this.userRepository.findByEmail(email);
         if(!user) {
-            throw new AppError("Email ou senha incorreto");
+            throw new AppError("Email e/ou senha incorreto");
         };
 
         const checkPassword = await compare(password, user.password);
         if(!checkPassword) {
-            throw new AppError("Email ou senha incorreto");
+            throw new AppError("Email e/ou senha incorreto");
         }
 
-        return user;
+        const { secret, expiresIn } = authConfig.jwt;
+        const token = sign({
+            role: user.role
+        }, secret, {
+            subject: String(user.id),
+            expiresIn
+        })
+
+        return {user, token};
     }
 }
 
