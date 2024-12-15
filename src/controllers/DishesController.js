@@ -1,5 +1,7 @@
 const DishRepository = require("../repositories/DishRepository");
 const IngredientRepository = require("../repositories/IngredientRepository");
+const FavoriteRepository = require("../repositories/FavoriteRepository");
+
 const DishCreateService = require("../services/DishCreateService");
 const DishDeleteService = require("../services/DishDeleteService");
 const DishUpdateService = require("../services/DishUpdateService");
@@ -70,24 +72,28 @@ class DishesController {
 
         const dishRepository = new DishRepository();
         const ingredientRepository = new IngredientRepository();
-        const dishShowService = new DishShowService(dishRepository, ingredientRepository);
+        const favoriteRepository = new FavoriteRepository();
+        const dishShowService = new DishShowService(dishRepository, ingredientRepository, favoriteRepository);
 
+        const user_id = req.user.id;
         const {id} = req.params;
 
-        const dish = await dishShowService.execute({id});
-        return res.status(200).json({dish});
+        const dish = await dishShowService.execute({id, user_id});
+        return res.status(200).json(dish);
     }
 
     async index(req, res) {
         const dishRepository = new DishRepository();
         const ingredientRepository = new IngredientRepository();
-        const dishIndexService = new DishIndexService(dishRepository, ingredientRepository);
+        const favoriteRepository = new FavoriteRepository();
+        const dishIndexService = new DishIndexService(dishRepository, ingredientRepository, favoriteRepository);
 
+        const user_id = req.user.id;
         const { search } = req.query;
 
         const querys = (typeof search === 'string' && search === 'undefined') ? null : search;
 
-        const dishes = await dishIndexService.execute(querys);   
+        const dishes = await dishIndexService.execute(querys, user_id);   
 
         return res.status(200).json({dishes});
     }

@@ -1,6 +1,7 @@
 require('express-async-errors');
 require('dotenv').config();
 
+const cors = require('cors');
 const express = require("express");
 const routes = require("./routes")
 const AppError = require("./utils/AppError");
@@ -8,10 +9,10 @@ const AppError = require("./utils/AppError");
 const PORT = process.env.PORT || 3000;
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
-const uploadConfig = require('./config/upload');
-//app.use("/files", express.static(uploadConfig.UPLOADS_FOLDER))
+
 
 app.use(routes);
 app.use((error, request, response, next) => {
