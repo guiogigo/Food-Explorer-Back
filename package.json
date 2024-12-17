@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "./src/server.js",
   "scripts": {
+    "start": "pm2-runtime start ecosystem.config.js --env production",
     "dev": "node --watch ./src/server.js",
     "migrate": "knex migrate:latest",
     "seed": "knex seed:run"
@@ -20,6 +21,7 @@
     "jsonwebtoken": "^9.0.2",
     "knex": "^3.1.0",
     "multer": "^1.4.5-lts.1",
+    "pm2": "^5.4.3",
     "sqlite3": "^5.1.7"
   }
 }
