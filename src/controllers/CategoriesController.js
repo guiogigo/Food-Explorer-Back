@@ -2,7 +2,6 @@ const CategoryRepository = require("../repositories/CategoryRepository");
 
 class CategoriesController {
     async index(req, res) {
-
         try {
             const categoryRepository = new CategoryRepository();
     

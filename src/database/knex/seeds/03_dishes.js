@@ -6,16 +6,16 @@ exports.seed = async function(knex) {
             "user_id": 2,
             "name": "Suco de Laranja",
             "description": "Suco natural de laranja fresco.",
-            "avatar": "4508aa56dd7ce60e7e05-img1.jpg",
+            "avatar": "49e7c355e27d5f50cf4f-img1.jpg",
             "price": 5.50,
             "category_id": 1
         },
         {
             "id": 2,
             "user_id": 2,
-            "name": "Café Espresso",
+            "name": "Café Expresso",
             "description": "Café forte e encorpado.",
-            "avatar": "009a50fb9065acb4f89a-img2.jpg",
+            "avatar": "d7b4b1f9660530b67578-img2.jpg",
             "price": 4.00,
             "category_id": 1
         },
@@ -24,7 +24,7 @@ exports.seed = async function(knex) {
             "user_id": 2,
             "name": "Milkshake de Chocolate",
             "description": "Milkshake cremoso de chocolate.",
-            "avatar": "e3bcd43a6bf324b51e1d",
+            "avatar": "5d79ea665e7561151e0d-img3.jpg",
             "price": 8.00,
             "category_id": 1
         },
@@ -33,7 +33,7 @@ exports.seed = async function(knex) {
             "user_id": 2,
             "name": "Refrigerante",
             "description": "Refrigerante com gás, vários sabores.",
-            "avatar": "028ca6ef1036b2852aff-img4.jpg",
+            "avatar": "f599e7330926b58e6875-img4.jpg",
             "price": 4.50,
             "category_id": 1
         },
@@ -42,7 +42,7 @@ exports.seed = async function(knex) {
             "user_id": 2,
             "name": "Chá Gelado",
             "description": "Chá refrescante servido gelado.",
-            "avatar": "a905859467ad57212bf1",
+            "avatar": "a000a0b66feb2c4c9cf1-img5.jpg",
             "price": 5.00,
             "category_id": 1
         },
@@ -51,7 +51,7 @@ exports.seed = async function(knex) {
             "user_id": 2,
             "name": "Água de Coco",
             "description": "Água de coco natural.",
-            "avatar": "66b5da86ff1c9b94923d-img6.jpg",
+            "avatar": "187d3873426eacddc043-img6.jpg",
             "price": 6.00,
             "category_id": 1
         },
@@ -60,7 +60,7 @@ exports.seed = async function(knex) {
             "user_id": 2,
             "name": "Hambúrguer Clássico",
             "description": "Pão, hambúrguer, queijo, alface e tomate.",
-            "avatar": "5eb65cc1db55dd54817a-img7.jpg",
+            "avatar": "2fefa7e0328cf68b9c05-img7.jpg",
             "price": 15.00,
             "category_id": 2
         },
@@ -69,7 +69,7 @@ exports.seed = async function(knex) {
             "user_id": 2,
             "name": "Pizza Margherita",
             "description": "Pizza com molho de tomate, queijo e manjericão.",
-            "avatar": "2bb2abda7452df4e6f55-img8.png",
+            "avatar": "d03b6307f11cbd55820c-img8.png",
             "price": 25.00,
             "category_id": 2
         },
@@ -78,7 +78,7 @@ exports.seed = async function(knex) {
             "user_id": 2,
             "name": "Salmão Grelhado",
             "description": "Salmão grelhado acompanhado de legumes.",
-            "avatar": "2755cbcead8a29339619-img9.png",
+            "avatar": "ff8c8b4c012e2b85ddfc-img9.png",
             "price": 30.00,
             "category_id": 2
         },
@@ -87,7 +87,7 @@ exports.seed = async function(knex) {
             "user_id": 2,
             "name": "Frango à Parmegiana",
             "description": "Frango empanado com molho e queijo.",
-            "avatar": "5b999a9e4f21416d40e0-img10.png",
+            "avatar": "19d38bbb2a0d251d093a-img10.png",
             "price": 20.00,
             "category_id": 2
         },
@@ -96,7 +96,7 @@ exports.seed = async function(knex) {
             "user_id": 2,
             "name": "Espaguete à Bolonhesa",
             "description": "Espaguete com molho de carne e tomate.",
-            "avatar": "07a48689fbb0b3e767f0-img11.png",
+            "avatar": "be7e80b9968b6460b041-img11.png",
             "price": 18.00,
             "category_id": 2
         },
@@ -105,7 +105,7 @@ exports.seed = async function(knex) {
             "user_id": 2,
             "name": "Risoto de Cogumelos",
             "description": "Risoto cremoso com cogumelos frescos.",
-            "avatar": "da8ba5dc450172ee313f-img12.png",
+            "avatar": "327959fa93969d34e9db-img12.png",
             "price": 22.00,
             "category_id": 2
         },
@@ -114,7 +114,7 @@ exports.seed = async function(knex) {
             "user_id": 2,
             "name": "Tacos Mexicanos",
             "description": "Tacos recheados com carne, queijo e vegetais.",
-            "avatar": "fe0c61e9c4eb15dd7d9e-img13.png",
+            "avatar": "efe796bed378c7df9fe2-img13.png",
             "price": 15.00,
             "category_id": 2
         },
@@ -123,7 +123,7 @@ exports.seed = async function(knex) {
             "user_id": 2,
             "name": "Bolo de Chocolate",
             "description": "Bolo macio com cobertura de chocolate.",
-            "avatar": "6afecf447a88dbf2f05a-img14.png",
+            "avatar": "1cb1c5891d0ba584dc5e-img14.png",
             "price": 7.00,
             "category_id": 3
         },
@@ -132,7 +132,7 @@ exports.seed = async function(knex) {
             "user_id": 2,
             "name": "Sorvete de Baunilha",
             "description": "Sorvete cremoso sabor baunilha.",
-            "avatar": "80c015afcc2bb9b9486c-img15.png",
+            "avatar": "be0e56475e43bbc07e06-img15.png",
             "price": 6.00,
             "category_id": 3
         },
@@ -141,7 +141,7 @@ exports.seed = async function(knex) {
             "user_id": 2,
             "name": "Torta de Limão",
             "description": "Torta com recheio de limão e merengue.",
-            "avatar": "2ad10ffad234336b6a10-img16.jpg",
+            "avatar": "f7a5aff0c336816b249c-img16.jpg",
             "price": 8.00,
             "category_id": 3
         },
@@ -150,7 +150,7 @@ exports.seed = async function(knex) {
             "user_id": 2,
             "name": "Brownie",
             "description": "Brownie de chocolate com nozes.",
-            "avatar": "d74c78776b39f545d8f5-img17.jpg",
+            "avatar": "1864cc6b94a6b7ba303f-img17.jpg",
             "price": 7.50,
             "category_id": 3
         },
@@ -159,7 +159,7 @@ exports.seed = async function(knex) {
             "user_id": 2,
             "name": "Pudim de Leite",
             "description": "Pudim cremoso com calda de caramelo.",
-            "avatar": "d26f046eaf6d6f8e35b9-img18.jpg",
+            "avatar": "81d16dc96d05ab7fc130-img18.jpg",
             "price": 5.50,
             "category_id": 3
         },
@@ -168,7 +168,7 @@ exports.seed = async function(knex) {
             "user_id": 2,
             "name": "Panqueca com Mel",
             "description": "Panqueca doce servida com mel.",
-            "avatar": "cbce4572480a1086e614-img19.jpg",
+            "avatar": "0f11891c9328aa8a1723-img19.jpg",
             "price": 6.50,
             "category_id": 3
         },
@@ -177,7 +177,7 @@ exports.seed = async function(knex) {
             "user_id": 2,
             "name": "Cheesecake de Morango",
             "description": "Cheesecake com cobertura de morango.",
-            "avatar": "54f16284369a17b08ee0-img20.jpg",
+            "avatar": "8ee8505ec499f755feb4-img20.jpg",
             "price": 9.00,
             "category_id": 3
         }       

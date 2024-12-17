@@ -2,6 +2,7 @@ const { compare } = require('bcryptjs');
 const AppError = require('../utils/AppError');
 const authConfig = require("../config/auth");
 const { sign } = require("jsonwebtoken");
+const { isEmailValid } = require('../utils/EmailVerify');
 
 class UserCreateService {
     constructor(userRepository) {
@@ -13,6 +14,8 @@ class UserCreateService {
         if(!email || !password) {
             throw new AppError("Preencha todos os campos")
         }
+
+        if(!isEmailValid(email)) throw new AppError("Email inválido");
 
         const user = await this.userRepository.findByEmail(email);
         if(!user) {

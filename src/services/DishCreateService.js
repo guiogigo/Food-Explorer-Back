@@ -1,11 +1,12 @@
 const AppError = require('../utils/AppError');
 
 class DishCreateService {
-    constructor(dishRepository) {
+    constructor(dishRepository, ingredientRepository) {
         this.dishRepository = dishRepository;
+        this.ingredientRepository = ingredientRepository;
     }
 
-    async execute({user_id, name, description, avatar, price, category_id}) {
+    async execute({user_id, name, description, avatar, price, category_id, ingredients}) {
 
         if(!user_id || !name || !description || !price || !category_id) {
             throw new AppError("Preencha todos os campos")
@@ -20,9 +21,20 @@ class DishCreateService {
             throw new AppError("Preço inválido");
         }
 
-        const dishId = await this.dishRepository.create(user_id, name, description, avatar, price, category_id);
-
-        return dishId;
+        
+        try {
+            const dishId = await this.dishRepository.create(user_id, name, description, avatar, price, category_id)
+            ingredients.map(async (item) => {
+                if(item.trim()){
+                    await this.ingredientRepository.create({dish_id: dishId, name: item})
+                }
+            
+        })
+        
+        return dishId
+        } catch (error) {
+            throw new AppError("Não foi possível cadastrar o prato");
+        }
     }
 }
 

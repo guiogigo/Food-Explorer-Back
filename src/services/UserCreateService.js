@@ -1,5 +1,6 @@
 const { hash } = require('bcryptjs');
 const AppError = require('../utils/AppError');
+const { isEmailValid } = require('../utils/EmailVerify');
 
 class UserCreateService {
     constructor(userRepository) {
@@ -11,6 +12,8 @@ class UserCreateService {
         if(!name || !email || !password) {
             throw new AppError("Preencha todos os campos")
         }
+
+        if(!isEmailValid(email)) throw new AppError("Email inválido");
 
         if(password.length < 6){
             throw new AppError("A senha deve conter pelo menos 6 caracteres");

@@ -1,5 +1,6 @@
 const AppError = require('../utils/AppError');
 const { hash, compare } = require("bcryptjs");
+const { isEmailValid } = require('../utils/EmailVerify');
 
 class UserUpdateService {
     constructor(userRepository) {
@@ -17,6 +18,7 @@ class UserUpdateService {
         if(name) newData.name = name;
 
         if(email) {
+            if(!isEmailValid(email)) throw new AppError("Email inválido");
             const userEmail = await this.userRepository.findByEmail(email);
             
             if(userEmail && id != userEmail.id) {

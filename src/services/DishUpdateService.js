@@ -1,11 +1,12 @@
 const AppError = require('../utils/AppError');
 
 class DishCreateService {
-    constructor(dishRepository) {
+    constructor(dishRepository, ingredientRepository) {
         this.dishRepository = dishRepository;
+        this.ingredientRepository = ingredientRepository
     }
 
-    async execute({id, user_id, name, description, avatar, price, category_id}) {
+    async execute({id, user_id, name, description, avatar, price, category_id, ingredients}) {
         
         const newData = {}
 
@@ -42,8 +43,22 @@ class DishCreateService {
         
         try {
             const updated = await this.dishRepository.update(id, newData);
+
+            const old_ingredients = await this.ingredientRepository.findByDish(id);
+
+            old_ingredients.map(async (item) => {
+                await this.ingredientRepository.delete(item.id);
+            })
+
+            ingredients.map(async (item) => {
+                if(item.trim()) {
+                    await this.ingredientRepository.create({dish_id: id, name: item})
+                }
+            })
+
             return updated
         } catch (error) {
+            console.log(error)
             throw new AppError("Ocorreu uma falha ao atualizar.", 500);
         }
     }
