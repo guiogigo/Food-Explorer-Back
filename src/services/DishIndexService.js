@@ -32,7 +32,6 @@ class DishShowService {
 
             const dishesByIngredient = (await this.dishRepository.findById(ingredients)).map((dish) => {
                 delete dish.user_id;
-                console.log(dish.dish_id)
                 return {
                     ...dish,
                     ingredients: dish.ingredients ? dish.ingredients.split(",") : [],

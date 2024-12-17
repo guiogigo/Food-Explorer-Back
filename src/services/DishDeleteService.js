@@ -7,7 +7,7 @@ class DishDeleteService {
 
     async execute(id, user_id) {
 
-        const checkDishExistes = await this.dishRepository.findById(id);
+        const [checkDishExistes] = await this.dishRepository.findById(id);
         if(!checkDishExistes) throw new AppError("Prato não encontrado");
         if(checkDishExistes.user_id != user_id) throw new AppError("Permissão negada");
 

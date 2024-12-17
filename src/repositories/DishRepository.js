@@ -10,7 +10,6 @@ class DishRepository {
             price,
             category_id
         });
-        console.log(dishId);
         return dishId;
     }
 
@@ -48,7 +47,7 @@ class DishRepository {
     async dishesBySearch(query){
         const dishes = await knex("dishes as d")
         .join("categories as c", "c.id", "d.category_id")
-        .join("ingredients as i", "i.dish_id", "d.id")
+        .leftJoin("ingredients as i", "i.dish_id", "d.id")
         .select(
             'd.id',
             'd.name',
@@ -70,7 +69,7 @@ class DishRepository {
         const idArray = Array.isArray(id) ? id : [id]
         const dish = await knex("dishes as d")
         .join("categories as c", "c.id", "d.category_id")
-        .join("ingredients as i", "i.dish_id", "d.id")
+        .leftJoin("ingredients as i", "i.dish_id", "d.id")
         .select(
             'd.id',
             'd.user_id',

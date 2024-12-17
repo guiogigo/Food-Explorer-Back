@@ -20,6 +20,7 @@ class DiskStorage {
             return
         }
 
+        //const res = await fs.promises.unlink(filePath);
         await fs.promises.unlink(filePath);
     }
 }

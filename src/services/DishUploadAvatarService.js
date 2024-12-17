@@ -13,9 +13,7 @@ class DishCreateService {
 
         const diskStorage = new DiskStorage();
         if(dish.avatar) {
-            console.log(typeof dish.avatar)
             await diskStorage.deleteFile(dish.avatar);
-            console.log("deletei")
         }
 
         const filename = await diskStorage.saveFile(avatarFilename);

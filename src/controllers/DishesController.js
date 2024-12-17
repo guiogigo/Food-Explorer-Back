@@ -53,7 +53,6 @@ class DishesController {
         const updatedDish = await dishUpdateService.execute({id: dish_id, user_id, name, description, avatar, price, category_id});
 
         const old_ingredients = await ingredientRepository.findByDish(dish_id);
-        console.log(old_ingredients);
 
         old_ingredients.map(async (item) => {
             await ingredientRepository.delete(item.id);

@@ -11,8 +11,6 @@ class DishCreateService {
 
         const [dish] = await this.dishRepository.findById(id);
         if(!dish) throw new AppError("Prato não encontrado");
-        console.log(user_id);
-        console.log(dish)
         if(dish.user_id != user_id) throw new AppError("Permissão negada");
 
         if(name && name != dish.name) {
